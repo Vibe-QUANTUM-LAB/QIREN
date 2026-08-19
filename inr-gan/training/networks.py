@@ -351,7 +351,7 @@ class SynthesisLayer(torch.nn.Module):
                 torch.randn([out_channels, in_channels, kernel_size, kernel_size]).to(memory_format=memory_format))
             self.bias = torch.nn.Parameter(torch.zeros([out_channels]))
         elif self.inr == 'RELU+QCF':
-            self.affine = FullyConnectedLayer(w_dim, (in_channels * out_channels), bias_init=0)
+            self.affine = FullyConnectedLayer(w_dim, (in_channels * out_channels) * 10, bias_init=0)
             memory_format = torch.channels_last if channels_last else torch.contiguous_format
             self.weight = torch.nn.Parameter(
                 torch.randn([out_channels, in_channels, kernel_size, kernel_size]).to(memory_format=memory_format))
